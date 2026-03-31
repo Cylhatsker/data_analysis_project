@@ -1,0 +1,46 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# 1. Загрузка данных
+df = pd.read_csv('data.csv')
+
+# 2. Просмотр первых строк
+print("Первые строки:")
+print(df.head())
+
+# 3. Информация о данных
+print("\nТипы данных:")
+print(df.dtypes)
+
+# 4. Проверка пропусков
+print("\nПропуски:")
+print(df.isnull().sum())
+
+# 5. Заполнение пропусков (пример)
+df = df.fillna(method='ffill')
+
+# 6. Преобразование типов (пример)
+# df['column_name'] = df['column_name'].astype(int)
+
+# 7. Базовая статистика
+print("\nСтатистика:")
+print(df.describe())
+
+# 8. Визуализация 1 — гистограмма
+plt.figure()
+df.hist()
+plt.suptitle("Гистограммы")
+plt.show()
+
+# 9. Визуализация 2 — boxplot
+plt.figure()
+sns.boxplot(data=df)
+plt.title("Boxplot")
+plt.show()
+
+# 10. Визуализация 3 — корреляция
+plt.figure()
+sns.heatmap(df.corr(numeric_only=True), annot=True, cmap='coolwarm')
+plt.title("Корреляция")
+plt.show()
